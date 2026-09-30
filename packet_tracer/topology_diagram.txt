@@ -1,0 +1,76 @@
+====================================================================================================
+               NOVACORP ENTERPRISE NETWORK TOPOLOGY & PORT CONNECTION MATRIX
+====================================================================================================
+
+                                    +--------------------+
+                                    |   Simulated ISP    |
+                                    |   203.0.113.2/30   |
+                                    +---------+----------+
+                                              |
+                                              | Serial / Gi0/1 (203.0.113.1/30)
+                                              v
+                                  +-----------------------+
+                                  |        R1-Core        |
+                                  |   (Cisco 2911 Router) |
+                                  |   Mgmt: 192.168.99.1  |
+                                  +-----------+-----------+
+                                              | Gi0/0 (802.1Q Subinterfaces: .10, .20, .30, .40, .99)
+                                              | 802.1Q Trunk (Native VLAN 999)
+                                              v Gi0/1
+                                  +-----------------------+
+                                  |       SW1-Dist        |
+                                  | (Catalyst 2960-24TT)  |
+                                  |  Mgmt: 192.168.99.11  |
+                                  +---+-------+-------+---+
+                                      |       |       |
+                 Fa0/1 (Trunk)        |       |       | Fa0/3 (Trunk)
+       +------------------------------+       |       +-------------------------------+
+       |                                      | Fa0/2 (Trunk)                         |
+       v Fa0/24                               v Fa0/24                                v Fa0/24
++---------------+                      +---------------+                      +---------------+
+|    SW2-Eng    |                      |    SW3-HR     |                      |   SW4-Sales   |
+| (2960-24TT)   |                      | (2960-24TT)   |                      | (2960-24TT)   |
+| 192.168.99.12 |                      | 192.168.99.13 |                      | 192.168.99.14 |
++---+-------+---+                      +---+-------+---+                      +---+-------+---+
+    |       |                              |       |                              |       |
+Fa0/1|   Fa0/2|                         Fa0/1|   Fa0/2|                         Fa0/1|   Fa0/2|
+    v       v                              v       v                              v       v
+[PC-Eng1] [PC-Eng2]                    [PC-HR1] [PC-HR2]                  [PC-Sales1] [PC-Sales2]
+(VLAN 10) (VLAN 10)                    (VLAN 20) (VLAN 20)                 (VLAN 30)   (VLAN 30)
+DHCP      DHCP                         DHCP      DHCP                      DHCP        DHCP
+
+                      ==========================================
+                      |    SW1-Dist Dedicated Access Ports     |
+                      ==========================================
+                                |                   |
+                          Fa0/10| (VLAN 40)   Fa0/20| (VLAN 99)
+                                v                   v
+                     +--------------------+  +--------------------+
+                     |    TFTP Server     |  |   Management PC    |
+                     |   192.168.40.10    |  |   192.168.99.50    |
+                     | (Central Archival) |  | (Python Automation)|
+                     +--------------------+  +--------------------+
+
+====================================================================================================
+PORT ALLOCATION AND WIRING REFERENCE TABLE
+====================================================================================================
+Device       Port              Connected Device  Target Port       Mode / VLAN        Description
+----------------------------------------------------------------------------------------------------
+R1-Core      GigabitEth 0/0    SW1-Dist          GigabitEth 0/1    Trunk (802.1Q)     Router-on-a-Stick ROAS
+R1-Core      GigabitEth 0/1    Cloud / ISP       Fa0 / Gi0         Routed (WAN)       Internet Simulation
+SW1-Dist     GigabitEth 0/1    R1-Core           GigabitEth 0/0    Trunk (Native 999) Core Router Uplink
+SW1-Dist     FastEth 0/1       SW2-Eng           FastEth 0/24      Trunk (Native 999) Distribution to Eng Access
+SW1-Dist     FastEth 0/2       SW3-HR            FastEth 0/24      Trunk (Native 999) Distribution to HR Access
+SW1-Dist     FastEth 0/3       SW4-Sales         FastEth 0/24      Trunk (Native 999) Distribution to Sales Access
+SW1-Dist     FastEth 0/10      TFTP-Server       FastEth 0         Access (VLAN 40)   TFTP Config Repository
+SW1-Dist     FastEth 0/20      Admin-PC          FastEth 0         Access (VLAN 99)   Admin Management Station
+SW2-Eng      FastEth 0/24      SW1-Dist          FastEth 0/1       Trunk (Native 999) Uplink to Distribution
+SW2-Eng      FastEth 0/1       PC-Eng1           FastEth 0         Access (VLAN 10)   Engineering Client 1
+SW2-Eng      FastEth 0/2       PC-Eng2           FastEth 0         Access (VLAN 10)   Engineering Client 2
+SW3-HR       FastEth 0/24      SW1-Dist          FastEth 0/2       Trunk (Native 999) Uplink to Distribution
+SW3-HR       FastEth 0/1       PC-HR1            FastEth 0         Access (VLAN 20)   HR Client 1
+SW3-HR       FastEth 0/2       PC-HR2            FastEth 0         Access (VLAN 20)   HR Client 2
+SW4-Sales    FastEth 0/24      SW1-Dist          FastEth 0/3       Trunk (Native 999) Uplink to Distribution
+SW4-Sales    FastEth 0/1       PC-Sales1         FastEth 0         Access (VLAN 30)   Sales Client 1
+SW4-Sales    FastEth 0/2       PC-Sales2         FastEth 0         Access (VLAN 30)   Sales Client 2
+====================================================================================================

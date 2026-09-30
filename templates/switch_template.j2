@@ -1,0 +1,97 @@
+{% include "base_template.j2" %}
+
+! --- Line VTY Remote Access Configuration (Catalyst Switch 0-15) ---
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+ logging synchronous
+ history size 50
+line vty 5 15
+ login local
+ transport input ssh
+ exec-timeout 5 0
+ logging synchronous
+ history size 50
+
+! ==============================================================================
+! VLAN Database Provisioning
+! ==============================================================================
+{% for vlan in vlans %}
+vlan {{ vlan.vlan_id }}
+ name {{ vlan.name }}
+{% endfor %}
+
+! ==============================================================================
+! Spanning Tree Protocol (STP) Hardening - Rapid-PVST+
+! ==============================================================================
+spanning-tree mode rapid-pvst
+{% if role == 'distribution_switch' %}
+spanning-tree vlan 10,20,30,40,99 root primary
+{% else %}
+spanning-tree vlan 10,20,30,40,99 root secondary
+{% endif %}
+
+! ==============================================================================
+! Active Port Configurations (Trunks, Access Ports, Port Security, SVI)
+! ==============================================================================
+{% for iface in interfaces %}
+{% if iface.mode == 'trunk' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ switchport mode trunk
+ switchport trunk native vlan {{ iface.native_vlan | default('999', true) }}
+ switchport trunk allowed vlan 10,20,30,40,99
+ no shutdown
+{% elif iface.mode == 'access' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ switchport mode access
+ switchport access vlan {{ iface.vlan_id }}
+{% if iface.port_security == 'yes' %}
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+{% endif %}
+ spanning-tree portfast
+ no shutdown
+{% elif iface.mode == 'svi' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ ip address {{ iface.ip_address }} {{ iface.subnet_mask }}
+ no shutdown
+{% endif %}
+{% endfor %}
+
+! ==============================================================================
+! Default Gateway for Switch Management Routing
+! ==============================================================================
+ip default-gateway {{ default_gateway }}
+
+! ==============================================================================
+! Security Parking Lot: Shut Down Unused Ports into VLAN 999
+! ==============================================================================
+{% if role == 'distribution_switch' %}
+interface range FastEthernet0/4 - 9, FastEthernet0/11 - 19, FastEthernet0/21 - 23, GigabitEthernet0/2
+ description Unused Security Isolation Ports
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+{% else %}
+interface range FastEthernet0/3 - 23, GigabitEthernet0/1 - 2
+ description Unused Security Isolation Ports
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+{% endif %}
+
+! ==============================================================================
+! Centralized TFTP Config Backup Macro Reference
+! Target TFTP Server: {{ tftp_server_ip }}
+! ==============================================================================
+! Automated Backup Command:
+! copy running-config tftp://{{ tftp_server_ip }}/{{ hostname }}-running-config.cfg
+
+end
+write memory

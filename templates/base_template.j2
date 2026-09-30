@@ -1,0 +1,54 @@
+! ==============================================================================
+! Base System & Security Baseline Configuration
+! Target Device: {{ hostname }} (Model: {{ model }})
+! Generated via Jinja2 Network Automation Toolchain
+! Role: {{ role | upper }} | Location: {{ location }}
+! ==============================================================================
+no service config
+service password-encryption
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no ip domain-lookup
+
+hostname {{ hostname }}
+
+ip domain-name {{ domain_name }}
+
+! --- User Credentials & Privilege Hardening ---
+username {{ admin_user }} privilege 15 secret {{ admin_password }}
+enable secret {{ enable_secret }}
+
+! --- Cryptographic Key Generation & SSH v2 Enforcement ---
+! In Cisco Packet Tracer or IOS CLI, ensure RSA key exists:
+crypto key generate rsa modulus 2048
+ip ssh version {{ ssh_version }}
+ip ssh time-out 60
+ip ssh authentication-retries 3
+
+! --- Legal Security MOTD Banner ---
+banner motd ^C
+*******************************************************************************
+*                          AUTHORIZED ACCESS ONLY                             *
+*                                                                             *
+* This device is part of NovaCorp Enterprise Network Infrastructure.         *
+* All activities on this device are actively monitored and logged.            *
+* Unauthorized access, tampering, or misuse is strictly prohibited and       *
+* will be prosecuted under applicable computer crime and cybersecurity laws.  *
+*                                                                             *
+* Device: {{ hostname }} | Mgmt IP: {{ mgmt_ip }}                                   *
+*******************************************************************************
+^C
+
+! --- Console Port Hardening ---
+line con 0
+ password {{ enable_secret }}
+ login local
+ exec-timeout 5 0
+ logging synchronous
+ history size 50
+
+! --- Auxiliary Port Hardening ---
+line aux 0
+ no exec
+ transport input none
+ transport output none

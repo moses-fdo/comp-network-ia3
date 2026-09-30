@@ -1,0 +1,6 @@
+hostname,device_type,role,model,mgmt_ip,subnet_mask,default_gateway,vlan_id,domain_name,admin_user,admin_password,enable_secret,ssh_version,tftp_server_ip,location
+R1-Core,cisco_ios,core_router,Cisco 2911,192.168.99.1,255.255.255.0,,99,novacorp.local,netadmin,Cisco@123!,cisco123,2,192.168.40.10,HQ Server Room Rack-01
+SW1-Dist,cisco_ios,distribution_switch,Cisco 2960-24TT,192.168.99.11,255.255.255.0,192.168.99.1,99,novacorp.local,netadmin,Cisco@123!,cisco123,2,192.168.40.10,HQ Server Room Rack-02
+SW2-Eng,cisco_ios,access_switch,Cisco 2960-24TT,192.168.99.12,255.255.255.0,192.168.99.1,99,novacorp.local,netadmin,Cisco@123!,cisco123,2,192.168.40.10,Engineering Lab IDF-01
+SW3-HR,cisco_ios,access_switch,Cisco 2960-24TT,192.168.99.13,255.255.255.0,192.168.99.1,99,novacorp.local,netadmin,Cisco@123!,cisco123,2,192.168.40.10,HR Wing IDF-02
+SW4-Sales,cisco_ios,access_switch,Cisco 2960-24TT,192.168.99.14,255.255.255.0,192.168.99.1,99,novacorp.local,netadmin,Cisco@123!,cisco123,2,192.168.40.10,Sales Wing IDF-03

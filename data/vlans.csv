@@ -1,0 +1,7 @@
+vlan_id,name,network,subnet_mask,gateway_ip,dhcp_pool_name,dhcp_excluded_start,dhcp_excluded_end,description
+10,Engineering,192.168.10.0,255.255.255.0,192.168.10.1,POOL_ENG,192.168.10.1,192.168.10.9,Engineering and Development Department Subnet
+20,HumanResources,192.168.20.0,255.255.255.0,192.168.20.1,POOL_HR,192.168.20.1,192.168.20.9,Human Resources and Personnel Department Subnet
+30,SalesMarketing,192.168.30.0,255.255.255.0,192.168.30.1,POOL_SALES,192.168.30.1,192.168.30.9,Sales and Marketing Department Subnet
+40,ServerFarm,192.168.40.0,255.255.255.0,192.168.40.1,STATIC,192.168.40.1,192.168.40.254,Server Farm with TFTP Backup and Infrastructure Services
+99,Management,192.168.99.0,255.255.255.0,192.168.99.1,STATIC,192.168.99.1,192.168.99.254,In-Band SSH Device Management and Network Admin VLAN
+999,ParkingLot_Dead,0.0.0.0,0.0.0.0,None,NONE,None,None,Security Isolation Blackhole VLAN for All Unused Switchports

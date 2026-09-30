@@ -1,0 +1,27 @@
+hostname,interface,description,mode,vlan_id,ip_address,subnet_mask,native_vlan,port_security,status
+R1-Core,GigabitEthernet0/0,Uplink Trunk to SW1-Dist Gi0/1,trunk_parent,,,,,no,no shutdown
+R1-Core,GigabitEthernet0/0.10,Engineering Gateway Subinterface,subinterface,10,192.168.10.1,255.255.255.0,,no,no shutdown
+R1-Core,GigabitEthernet0/0.20,HR Gateway Subinterface,subinterface,20,192.168.20.1,255.255.255.0,,no,no shutdown
+R1-Core,GigabitEthernet0/0.30,Sales Gateway Subinterface,subinterface,30,192.168.30.1,255.255.255.0,,no,no shutdown
+R1-Core,GigabitEthernet0/0.40,Server Farm TFTP Gateway Subinterface,subinterface,40,192.168.40.1,255.255.255.0,,no,no shutdown
+R1-Core,GigabitEthernet0/0.99,Management SVI Gateway Subinterface,subinterface,99,192.168.99.1,255.255.255.0,,no,no shutdown
+R1-Core,GigabitEthernet0/1,Simulated ISP WAN Uplink,routed,,203.0.113.1,255.255.255.252,,no,no shutdown
+SW1-Dist,GigabitEthernet0/1,Trunk Uplink to R1-Core Gi0/0,trunk,,,,999,no,no shutdown
+SW1-Dist,FastEthernet0/1,Trunk Downlink to SW2-Eng Fa0/24,trunk,,,,999,no,no shutdown
+SW1-Dist,FastEthernet0/2,Trunk Downlink to SW3-HR Fa0/24,trunk,,,,999,no,no shutdown
+SW1-Dist,FastEthernet0/3,Trunk Downlink to SW4-Sales Fa0/24,trunk,,,,999,no,no shutdown
+SW1-Dist,FastEthernet0/10,Access to TFTP Backup Server,access,40,,,,yes,no shutdown
+SW1-Dist,FastEthernet0/20,Access to Admin Management PC,access,99,,,,yes,no shutdown
+SW1-Dist,Vlan99,Management SVI,svi,99,192.168.99.11,255.255.255.0,,no,no shutdown
+SW2-Eng,FastEthernet0/24,Trunk Uplink to SW1-Dist Fa0/1,trunk,,,,999,no,no shutdown
+SW2-Eng,FastEthernet0/1,Engineering Workstation 01,access,10,,,,yes,no shutdown
+SW2-Eng,FastEthernet0/2,Engineering Workstation 02,access,10,,,,yes,no shutdown
+SW2-Eng,Vlan99,Management SVI,svi,99,192.168.99.12,255.255.255.0,,no,no shutdown
+SW3-HR,FastEthernet0/24,Trunk Uplink to SW1-Dist Fa0/2,trunk,,,,999,no,no shutdown
+SW3-HR,FastEthernet0/1,HR Workstation 01,access,20,,,,yes,no shutdown
+SW3-HR,FastEthernet0/2,HR Workstation 02,access,20,,,,yes,no shutdown
+SW3-HR,Vlan99,Management SVI,svi,99,192.168.99.13,255.255.255.0,,no,no shutdown
+SW4-Sales,FastEthernet0/24,Trunk Uplink to SW1-Dist Fa0/3,trunk,,,,999,no,no shutdown
+SW4-Sales,FastEthernet0/1,Sales Workstation 01,access,30,,,,yes,no shutdown
+SW4-Sales,FastEthernet0/2,Sales Workstation 02,access,30,,,,yes,no shutdown
+SW4-Sales,Vlan99,Management SVI,svi,99,192.168.99.14,255.255.255.0,,no,no shutdown

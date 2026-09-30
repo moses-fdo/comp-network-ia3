@@ -1,0 +1,70 @@
+{% include "base_template.j2" %}
+
+! --- Line VTY Remote Access Configuration (Router) ---
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+ logging synchronous
+ history size 50
+
+! ==============================================================================
+! Interface Configurations & Router-on-a-Stick (802.1Q Inter-VLAN Routing)
+! ==============================================================================
+{% for iface in interfaces %}
+{% if iface.mode == 'trunk_parent' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ no ip address
+ no shutdown
+{% elif iface.mode == 'subinterface' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ encapsulation dot1Q {{ iface.vlan_id }}
+ ip address {{ iface.ip_address }} {{ iface.subnet_mask }}
+ no shutdown
+{% elif iface.mode == 'routed' %}
+interface {{ iface.interface }}
+ description {{ iface.description }}
+ ip address {{ iface.ip_address }} {{ iface.subnet_mask }}
+ no shutdown
+{% endif %}
+{% endfor %}
+
+! ==============================================================================
+! DHCP Server Configuration for Departmental Subnets
+! ==============================================================================
+{% for vlan in vlans if vlan.dhcp_pool_name != 'NONE' and vlan.dhcp_pool_name != 'STATIC' %}
+ip dhcp excluded-address {{ vlan.dhcp_excluded_start }} {{ vlan.dhcp_excluded_end }}
+{% endfor %}
+
+{% for vlan in vlans if vlan.dhcp_pool_name != 'NONE' and vlan.dhcp_pool_name != 'STATIC' %}
+ip dhcp pool {{ vlan.dhcp_pool_name }}
+ network {{ vlan.network }} {{ vlan.subnet_mask }}
+ default-router {{ vlan.gateway_ip }}
+ dns-server {{ tftp_server_ip }}
+ domain-name {{ domain_name }}
+{% endfor %}
+
+! ==============================================================================
+! Enterprise Routing Engine (Static WAN Default + OSPF Area 0)
+! ==============================================================================
+! Simulated ISP / WAN Default Route
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+
+! OSPF Interior Gateway Protocol for Campus Routing & Convergence
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ passive-interface GigabitEthernet0/1
+ network 192.168.0.0 0.0.255.255 area 0
+
+! ==============================================================================
+! Centralized TFTP Config Backup Macro Reference
+! Target TFTP Server: {{ tftp_server_ip }}
+! ==============================================================================
+! Automated Backup Command:
+! copy running-config tftp://{{ tftp_server_ip }}/{{ hostname }}-running-config.cfg
+
+end
+write memory
