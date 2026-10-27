@@ -1,0 +1,17 @@
+{
+  "steps": [
+    {
+      "file_path": "scripts/generate_configs.py",
+      "target_symbol": "is_token_expired",
+      "purpose": "Replace naive datetime.utcnow().timestamp() with timezone-aware datetime.now(timezone.utc).timestamp()"
+    }
+  ],
+  "rationale": "Ensures token expiration timestamp comparison uses true UTC regardless of host local timezone.",
+  "regression_boundaries": [
+    "app/auth/permissions.py",
+    "app/services/order_service.py"
+  ],
+  "dependent_symbols": [
+    "validate_token"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "file": "scripts/generate_configs.py",
+  "symbol": "main",
+  "lines": [
+    45,
+    75
+  ],
+  "confidence": 0.95,
+  "summary": "Root cause localized to main() in scripts/generate_configs.py: naive utcnow datetime timestamp calculation produces offset error in non-UTC timezone."
+}

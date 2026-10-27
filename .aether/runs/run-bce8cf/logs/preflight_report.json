@@ -1,0 +1,14 @@
+{
+  "is_ready": false,
+  "python_version": "3.14.7",
+  "python_valid": true,
+  "pytest_available": true,
+  "pytest_path": "/mnt/win-newvol/Projects/GitHub/hacknex-ai-agent/.venv/bin/pytest",
+  "docker_compose_present": false,
+  "env_example_present": false,
+  "env_vars_injected": [],
+  "baseline_run_ok": false,
+  "status": "ENVIRONMENT_NOT_READY",
+  "error_message": "Environment dependency error during test collection:\n==================================== ERRORS ====================================\n__________________ ERROR collecting tests/test_automation.py ___________________\nImportError while importing test module '/mnt/win-newvol/Projects/GitHub/aether-run-bce8cf/tests/test_automation.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_automation.py:10: in <module>\n    from scripts.generate_configs import (\nscripts/generate_configs.py:18: in <module>\n    from jinja2 import Environment, FileSystemLoader, select_autoescape\nE   ModuleNotFoundError: No module named 'jinja2'\n=========================== short test summary info ============================\nERROR tests/test_automation.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\nno tests collected, 1 error in 0.32s",
+  "remediation": "Install missing dependencies via: pip install -r requirements.txt"
+}

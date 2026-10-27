@@ -1,0 +1,12 @@
+{
+  "has_symptom": true,
+  "has_expected_vs_actual": false,
+  "anchors": [],
+  "is_anchored": false,
+  "clarification_questions": [
+    "Which subsystem or module is failing? (Options: [A] app/auth/tokens.py, [B] app/models/order.py, [C] app/auth/permissions.py)",
+    "What is the expected vs actual behavior? (Options: [A] Expiration calculation wrong under non-UTC timezone, [B] Signature verification fails, [C] Order total calculation error)"
+  ],
+  "assumption_stated": "Unattended run assumption: Defect anchored to app/auth/tokens.py::is_token_expired based on highest defect probability in repository.",
+  "confidence": 0.5
+}

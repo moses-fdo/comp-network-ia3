@@ -1,0 +1,14 @@
+{
+  "is_ready": true,
+  "python_version": "3.14.7",
+  "python_valid": true,
+  "pytest_available": true,
+  "pytest_path": "/mnt/win-newvol/Projects/GitHub/comp-network-ia3/.venv/bin/pytest",
+  "docker_compose_present": false,
+  "env_example_present": false,
+  "env_vars_injected": [],
+  "baseline_run_ok": true,
+  "status": "READY",
+  "error_message": null,
+  "remediation": null
+}

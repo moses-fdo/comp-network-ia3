@@ -1,0 +1,12 @@
+{
+  "has_symptom": false,
+  "has_expected_vs_actual": false,
+  "anchors": [
+    "scripts/generate_configs.py::generate_configurations",
+    "scripts/generate_configs.py"
+  ],
+  "is_anchored": true,
+  "clarification_questions": [],
+  "assumption_stated": null,
+  "confidence": 0.95
+}

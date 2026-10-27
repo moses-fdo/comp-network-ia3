@@ -1,0 +1,2140 @@
+{
+  "repo": "/mnt/win-newvol/Projects/GitHub/comp-network-ia3",
+  "nodes": [
+    {
+      "id": "cmd:pytest",
+      "node_type": "DeterministicFact",
+      "label": "Baseline Test Command",
+      "properties": {
+        "command": "pytest tests -v",
+        "framework": "pytest"
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:33:27.843036+00:00"
+    },
+    {
+      "id": "cmd:test_baseline",
+      "node_type": "DeterministicFact",
+      "label": "Baseline Test Command",
+      "properties": {
+        "command": "pytest tests -v",
+        "framework": "pytest"
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.616858+00:00"
+    },
+    {
+      "id": "fact:entry_point",
+      "node_type": "DeterministicFact",
+      "label": "Primary Entry Point",
+      "properties": {
+        "entry_file": "main.py",
+        "all_entry_points": [
+          "main.py"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.617942+00:00"
+    },
+    {
+      "id": "fact:tech_stack",
+      "node_type": "DeterministicFact",
+      "label": "Detected Technology Stack",
+      "properties": {
+        "languages": {
+          "Text": 22,
+          "Markdown": 18,
+          "Python": 8
+        },
+        "total_files": 48,
+        "total_lines": 6561,
+        "dependencies": [
+          "jinja2",
+          "netmiko",
+          "paramiko",
+          "rich",
+          "tabulate",
+          "pytest",
+          "pyyaml"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.618810+00:00"
+    },
+    {
+      "id": "decision:testing:regression_gate",
+      "node_type": "ArchitecturalDecision",
+      "label": "Quality Gate: Pytest Automated Regression & Boundary Verification",
+      "properties": {
+        "category": "Testing & QA",
+        "description": "Comprehensive automated test suite (7 tests detected) verifying functional correctness, boundary conditions, and regression immunity.",
+        "rationale": "Ensures every patch is verified deterministically with zero unintended regressions.",
+        "rules": [
+          "Run baseline test command: 'pytest tests -v' before and after any proposed modification.",
+          "Aether-SWE Judge requires 0 regressions across all existing tests for any patch to be accepted.",
+          "Write reproduction tests demonstrating failure before applying code fixes."
+        ],
+        "files": [
+          "packet_tracer/test_scenarios.md",
+          "tests/test_automation.py"
+        ],
+        "symbols": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.619664+00:00"
+    },
+    {
+      "id": "file:main.py",
+      "node_type": "File",
+      "label": "main.py",
+      "properties": {
+        "path": "main.py",
+        "imports": [
+          "scripts.cli_runner"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.832521+00:00"
+    },
+    {
+      "id": "file:scripts/backup_tftp.py",
+      "node_type": "File",
+      "label": "scripts/backup_tftp.py",
+      "properties": {
+        "path": "scripts/backup_tftp.py",
+        "imports": [
+          "argparse",
+          "csv",
+          "datetime",
+          "logging",
+          "os",
+          "shutil",
+          "sys",
+          "time",
+          "pathlib"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.833522+00:00"
+    },
+    {
+      "id": "file:scripts/cli_runner.py",
+      "node_type": "File",
+      "label": "scripts/cli_runner.py",
+      "properties": {
+        "path": "scripts/cli_runner.py",
+        "imports": [
+          "os",
+          "sys",
+          "time",
+          "pathlib",
+          "scripts.generate_configs",
+          "scripts.deploy_configs",
+          "scripts.backup_tftp",
+          "scripts.verify_network"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.847076+00:00"
+    },
+    {
+      "id": "file:scripts/deploy_configs.py",
+      "node_type": "File",
+      "label": "scripts/deploy_configs.py",
+      "properties": {
+        "path": "scripts/deploy_configs.py",
+        "imports": [
+          "argparse",
+          "csv",
+          "logging",
+          "os",
+          "sys",
+          "time",
+          "pathlib"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.854222+00:00"
+    },
+    {
+      "id": "file:scripts/generate_configs.py",
+      "node_type": "File",
+      "label": "scripts/generate_configs.py",
+      "properties": {
+        "path": "scripts/generate_configs.py",
+        "imports": [
+          "csv",
+          "ipaddress",
+          "os",
+          "sys",
+          "pathlib",
+          "jinja2"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.873704+00:00"
+    },
+    {
+      "id": "file:scripts/verify_network.py",
+      "node_type": "File",
+      "label": "scripts/verify_network.py",
+      "properties": {
+        "path": "scripts/verify_network.py",
+        "imports": [
+          "argparse",
+          "csv",
+          "os",
+          "platform",
+          "subprocess",
+          "sys",
+          "pathlib"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.899562+00:00"
+    },
+    {
+      "id": "file:scripts/__init__.py",
+      "node_type": "File",
+      "label": "scripts/__init__.py",
+      "properties": {
+        "path": "scripts/__init__.py",
+        "imports": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.922491+00:00"
+    },
+    {
+      "id": "file:tests/test_automation.py",
+      "node_type": "File",
+      "label": "tests/test_automation.py",
+      "properties": {
+        "path": "tests/test_automation.py",
+        "lang": "Python",
+        "line_count": 109,
+        "imports": [
+          "ipaddress",
+          "pathlib",
+          "sys",
+          "pytest",
+          "scripts.generate_configs",
+          "scripts.verify_network"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.626929+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::setup_logger",
+      "node_type": "Symbol",
+      "label": "Function setup_logger",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "setup_logger",
+        "lineno": 44,
+        "args": [
+          "log_file"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.628280+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::load_inventory",
+      "node_type": "Symbol",
+      "label": "Function load_inventory",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "load_inventory",
+        "lineno": 56,
+        "args": [
+          "inventory_path"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.629359+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::simulate_tftp_backup",
+      "node_type": "Symbol",
+      "label": "Function simulate_tftp_backup",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "simulate_tftp_backup",
+        "lineno": 63,
+        "args": [
+          "device",
+          "configs_dir",
+          "storage_dir",
+          "timestamp",
+          "logger"
+        ],
+        "docstring": "Simulates TFTP backup transfer for demonstration/Packet Tracer lab.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.630286+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::live_tftp_backup",
+      "node_type": "Symbol",
+      "label": "Function live_tftp_backup",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "live_tftp_backup",
+        "lineno": 115,
+        "args": [
+          "device",
+          "timestamp",
+          "timeout",
+          "logger"
+        ],
+        "docstring": "Executes live TFTP backup command via Netmiko SSH.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.631234+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::print_backup_summary",
+      "node_type": "Symbol",
+      "label": "Function print_backup_summary",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "print_backup_summary",
+        "lineno": 194,
+        "args": [
+          "results",
+          "storage_dir"
+        ],
+        "docstring": "Outputs formatted summary of backup operations.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.632126+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py::main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "file": "scripts/backup_tftp.py",
+        "name": "main",
+        "lineno": 238,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.632947+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py::print_banner",
+      "node_type": "Symbol",
+      "label": "Function print_banner",
+      "properties": {
+        "file": "scripts/cli_runner.py",
+        "name": "print_banner",
+        "lineno": 37,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.633760+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py::menu",
+      "node_type": "Symbol",
+      "label": "Function menu",
+      "properties": {
+        "file": "scripts/cli_runner.py",
+        "name": "menu",
+        "lineno": 55,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.635105+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py::display_milestones",
+      "node_type": "Symbol",
+      "label": "Function display_milestones",
+      "properties": {
+        "file": "scripts/cli_runner.py",
+        "name": "display_milestones",
+        "lineno": 150,
+        "args": [],
+        "docstring": "Renders milestone schedule for staff/faculty review.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.636150+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::setup_logger",
+      "node_type": "Symbol",
+      "label": "Function setup_logger",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "setup_logger",
+        "lineno": 43,
+        "args": [
+          "log_file"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.636995+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::load_inventory",
+      "node_type": "Symbol",
+      "label": "Function load_inventory",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "load_inventory",
+        "lineno": 57,
+        "args": [
+          "inventory_path"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.637953+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::clean_config_for_deployment",
+      "node_type": "Symbol",
+      "label": "Function clean_config_for_deployment",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "clean_config_for_deployment",
+        "lineno": 64,
+        "args": [
+          "cfg_text"
+        ],
+        "docstring": "Prepares Cisco IOS commands list from configuration text.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.638841+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::simulate_ssh_deployment",
+      "node_type": "Symbol",
+      "label": "Function simulate_ssh_deployment",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "simulate_ssh_deployment",
+        "lineno": 79,
+        "args": [
+          "device",
+          "config_path",
+          "logger"
+        ],
+        "docstring": "Simulates realistic SSH deployment for offline/Packet Tracer demo mode.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.639721+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::live_ssh_deployment",
+      "node_type": "Symbol",
+      "label": "Function live_ssh_deployment",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "live_ssh_deployment",
+        "lineno": 115,
+        "args": [
+          "device",
+          "config_path",
+          "timeout",
+          "logger"
+        ],
+        "docstring": "Connects to a live Cisco device via SSH and deploys configuration.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.640606+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::deploy_all",
+      "node_type": "Symbol",
+      "label": "Function deploy_all",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "deploy_all",
+        "lineno": 180,
+        "args": [
+          "devices",
+          "configs_dir",
+          "dry_run",
+          "timeout",
+          "logger",
+          "target_hostname"
+        ],
+        "docstring": "Iterates through devices and executes deployment.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.642006+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::print_deployment_summary",
+      "node_type": "Symbol",
+      "label": "Function print_deployment_summary",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "print_deployment_summary",
+        "lineno": 210,
+        "args": [
+          "results"
+        ],
+        "docstring": "Outputs formatted deployment results.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.643080+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py::main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "file": "scripts/deploy_configs.py",
+        "name": "main",
+        "lineno": 247,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.644056+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::print_info",
+      "node_type": "Symbol",
+      "label": "Function print_info",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "print_info",
+        "lineno": 32,
+        "args": [
+          "msg"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.645012+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::print_success",
+      "node_type": "Symbol",
+      "label": "Function print_success",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "print_success",
+        "lineno": 39,
+        "args": [
+          "msg"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.645993+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::print_warning",
+      "node_type": "Symbol",
+      "label": "Function print_warning",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "print_warning",
+        "lineno": 46,
+        "args": [
+          "msg"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.646921+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::print_error",
+      "node_type": "Symbol",
+      "label": "Function print_error",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "print_error",
+        "lineno": 53,
+        "args": [
+          "msg"
+        ],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.648226+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::validate_ip",
+      "node_type": "Symbol",
+      "label": "Function validate_ip",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "validate_ip",
+        "lineno": 60,
+        "args": [
+          "ip_str",
+          "allow_empty"
+        ],
+        "docstring": "Validates IPv4 string.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.649670+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::load_csv",
+      "node_type": "Symbol",
+      "label": "Function load_csv",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "load_csv",
+        "lineno": 71,
+        "args": [
+          "filepath"
+        ],
+        "docstring": "Reads CSV file and returns list of dictionaries.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.650718+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::build_device_contexts",
+      "node_type": "Symbol",
+      "label": "Function build_device_contexts",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "build_device_contexts",
+        "lineno": 80,
+        "args": [
+          "inventory",
+          "vlans",
+          "interfaces"
+        ],
+        "docstring": "Merges inventory, VLANs, and interfaces for template rendering.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.651641+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::generate_configurations",
+      "node_type": "Symbol",
+      "label": "Function generate_configurations",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "generate_configurations",
+        "lineno": 105,
+        "args": [
+          "base_dir",
+          "output_dir",
+          "templates_dir"
+        ],
+        "docstring": "Main configuration generation function.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.652612+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::display_results",
+      "node_type": "Symbol",
+      "label": "Function display_results",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "display_results",
+        "lineno": 191,
+        "args": [
+          "generated_files",
+          "base_dir"
+        ],
+        "docstring": "Prints a styled summary table of generated configurations.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.653501+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py::main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "file": "scripts/generate_configs.py",
+        "name": "main",
+        "lineno": 220,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.654408+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::ping_ip",
+      "node_type": "Symbol",
+      "label": "Function ping_ip",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "ping_ip",
+        "lineno": 33,
+        "args": [
+          "ip_address",
+          "timeout"
+        ],
+        "docstring": "Executes OS ping command.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.655590+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::audit_device_config",
+      "node_type": "Symbol",
+      "label": "Function audit_device_config",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "audit_device_config",
+        "lineno": 45,
+        "args": [
+          "cfg_path",
+          "is_router"
+        ],
+        "docstring": "Performs deep security and functional compliance check on Cisco config.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.656695+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::run_compliance_audit",
+      "node_type": "Symbol",
+      "label": "Function run_compliance_audit",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "run_compliance_audit",
+        "lineno": 93,
+        "args": [
+          "configs_dir",
+          "inventory"
+        ],
+        "docstring": "Runs security audits on all device configs.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.657770+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::run_reachability_tests",
+      "node_type": "Symbol",
+      "label": "Function run_reachability_tests",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "run_reachability_tests",
+        "lineno": 108,
+        "args": [
+          "inventory",
+          "simulate"
+        ],
+        "docstring": "Verifies reachability of network infrastructure.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.658671+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::check_tftp_backups",
+      "node_type": "Symbol",
+      "label": "Function check_tftp_backups",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "check_tftp_backups",
+        "lineno": 142,
+        "args": [
+          "storage_dir",
+          "inventory"
+        ],
+        "docstring": "Verifies that backups exist for all devices.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.659555+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::display_audit_tables",
+      "node_type": "Symbol",
+      "label": "Function display_audit_tables",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "display_audit_tables",
+        "lineno": 157,
+        "args": [
+          "audits",
+          "reachability",
+          "backup_map"
+        ],
+        "docstring": "Renders comprehensive terminal report.",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.660553+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py::main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "file": "scripts/verify_network.py",
+        "name": "main",
+        "lineno": 232,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.661478+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_ip_validation_helper",
+      "node_type": "Symbol",
+      "label": "Function test_ip_validation_helper",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_ip_validation_helper",
+        "lineno": 24,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.662698+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_inventory_csv_schema",
+      "node_type": "Symbol",
+      "label": "Function test_inventory_csv_schema",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_inventory_csv_schema",
+        "lineno": 33,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.663701+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_vlans_csv_schema",
+      "node_type": "Symbol",
+      "label": "Function test_vlans_csv_schema",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_vlans_csv_schema",
+        "lineno": 51,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.664642+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_generate_configurations",
+      "node_type": "Symbol",
+      "label": "Function test_generate_configurations",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_generate_configurations",
+        "lineno": 62,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.665585+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_router_configuration_syntax",
+      "node_type": "Symbol",
+      "label": "Function test_router_configuration_syntax",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_router_configuration_syntax",
+        "lineno": 79,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.666490+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_switch_configuration_syntax",
+      "node_type": "Symbol",
+      "label": "Function test_switch_configuration_syntax",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_switch_configuration_syntax",
+        "lineno": 92,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.667382+00:00"
+    },
+    {
+      "id": "symbol:tests/test_automation.py::test_all_devices_security_compliance",
+      "node_type": "Symbol",
+      "label": "Function test_all_devices_security_compliance",
+      "properties": {
+        "file": "tests/test_automation.py",
+        "name": "test_all_devices_security_compliance",
+        "lineno": 104,
+        "args": [],
+        "docstring": "",
+        "is_async": false
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:38.668269+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:setup_logger",
+      "node_type": "Symbol",
+      "label": "Function setup_logger",
+      "properties": {
+        "name": "setup_logger",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 44,
+        "args": [
+          "log_file"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.834380+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:load_inventory",
+      "node_type": "Symbol",
+      "label": "Function load_inventory",
+      "properties": {
+        "name": "load_inventory",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 56,
+        "args": [
+          "inventory_path"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.836530+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:simulate_tftp_backup",
+      "node_type": "Symbol",
+      "label": "Function simulate_tftp_backup",
+      "properties": {
+        "name": "simulate_tftp_backup",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 63,
+        "args": [
+          "device",
+          "configs_dir",
+          "storage_dir",
+          "timestamp",
+          "logger"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.838201+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:live_tftp_backup",
+      "node_type": "Symbol",
+      "label": "Function live_tftp_backup",
+      "properties": {
+        "name": "live_tftp_backup",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 115,
+        "args": [
+          "device",
+          "timestamp",
+          "timeout",
+          "logger"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.839938+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:print_backup_summary",
+      "node_type": "Symbol",
+      "label": "Function print_backup_summary",
+      "properties": {
+        "name": "print_backup_summary",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 194,
+        "args": [
+          "results",
+          "storage_dir"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.841604+00:00"
+    },
+    {
+      "id": "symbol:scripts/backup_tftp.py:main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "name": "main",
+        "type": "function",
+        "file": "scripts/backup_tftp.py",
+        "lineno": 238,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.844958+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py:print_banner",
+      "node_type": "Symbol",
+      "label": "Function print_banner",
+      "properties": {
+        "name": "print_banner",
+        "type": "function",
+        "file": "scripts/cli_runner.py",
+        "lineno": 37,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.848161+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py:menu",
+      "node_type": "Symbol",
+      "label": "Function menu",
+      "properties": {
+        "name": "menu",
+        "type": "function",
+        "file": "scripts/cli_runner.py",
+        "lineno": 55,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.850353+00:00"
+    },
+    {
+      "id": "symbol:scripts/cli_runner.py:display_milestones",
+      "node_type": "Symbol",
+      "label": "Function display_milestones",
+      "properties": {
+        "name": "display_milestones",
+        "type": "function",
+        "file": "scripts/cli_runner.py",
+        "lineno": 150,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.852446+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:setup_logger",
+      "node_type": "Symbol",
+      "label": "Function setup_logger",
+      "properties": {
+        "name": "setup_logger",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 43,
+        "args": [
+          "log_file"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.855155+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:load_inventory",
+      "node_type": "Symbol",
+      "label": "Function load_inventory",
+      "properties": {
+        "name": "load_inventory",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 57,
+        "args": [
+          "inventory_path"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.857480+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:clean_config_for_deployment",
+      "node_type": "Symbol",
+      "label": "Function clean_config_for_deployment",
+      "properties": {
+        "name": "clean_config_for_deployment",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 64,
+        "args": [
+          "cfg_text"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.859925+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:simulate_ssh_deployment",
+      "node_type": "Symbol",
+      "label": "Function simulate_ssh_deployment",
+      "properties": {
+        "name": "simulate_ssh_deployment",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 79,
+        "args": [
+          "device",
+          "config_path",
+          "logger"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.861995+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:live_ssh_deployment",
+      "node_type": "Symbol",
+      "label": "Function live_ssh_deployment",
+      "properties": {
+        "name": "live_ssh_deployment",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 115,
+        "args": [
+          "device",
+          "config_path",
+          "timeout",
+          "logger"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.864638+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:deploy_all",
+      "node_type": "Symbol",
+      "label": "Function deploy_all",
+      "properties": {
+        "name": "deploy_all",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 180,
+        "args": [
+          "devices",
+          "configs_dir",
+          "dry_run",
+          "timeout",
+          "logger",
+          "target_hostname"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.866696+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:print_deployment_summary",
+      "node_type": "Symbol",
+      "label": "Function print_deployment_summary",
+      "properties": {
+        "name": "print_deployment_summary",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 210,
+        "args": [
+          "results"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.868693+00:00"
+    },
+    {
+      "id": "symbol:scripts/deploy_configs.py:main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "name": "main",
+        "type": "function",
+        "file": "scripts/deploy_configs.py",
+        "lineno": 247,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.871347+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:print_info",
+      "node_type": "Symbol",
+      "label": "Function print_info",
+      "properties": {
+        "name": "print_info",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 32,
+        "args": [
+          "msg"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.874850+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:print_success",
+      "node_type": "Symbol",
+      "label": "Function print_success",
+      "properties": {
+        "name": "print_success",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 39,
+        "args": [
+          "msg"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.877152+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:print_warning",
+      "node_type": "Symbol",
+      "label": "Function print_warning",
+      "properties": {
+        "name": "print_warning",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 46,
+        "args": [
+          "msg"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.879317+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:print_error",
+      "node_type": "Symbol",
+      "label": "Function print_error",
+      "properties": {
+        "name": "print_error",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 53,
+        "args": [
+          "msg"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.881278+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:validate_ip",
+      "node_type": "Symbol",
+      "label": "Function validate_ip",
+      "properties": {
+        "name": "validate_ip",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 60,
+        "args": [
+          "ip_str",
+          "allow_empty"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.883149+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:load_csv",
+      "node_type": "Symbol",
+      "label": "Function load_csv",
+      "properties": {
+        "name": "load_csv",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 71,
+        "args": [
+          "filepath"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.885386+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:build_device_contexts",
+      "node_type": "Symbol",
+      "label": "Function build_device_contexts",
+      "properties": {
+        "name": "build_device_contexts",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 80,
+        "args": [
+          "inventory",
+          "vlans",
+          "interfaces"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.887661+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:generate_configurations",
+      "node_type": "Symbol",
+      "label": "Function generate_configurations",
+      "properties": {
+        "name": "generate_configurations",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 105,
+        "args": [
+          "base_dir",
+          "output_dir",
+          "templates_dir"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.889752+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:display_results",
+      "node_type": "Symbol",
+      "label": "Function display_results",
+      "properties": {
+        "name": "display_results",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 191,
+        "args": [
+          "generated_files",
+          "base_dir"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.892804+00:00"
+    },
+    {
+      "id": "symbol:scripts/generate_configs.py:main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "name": "main",
+        "type": "function",
+        "file": "scripts/generate_configs.py",
+        "lineno": 220,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.896991+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:ping_ip",
+      "node_type": "Symbol",
+      "label": "Function ping_ip",
+      "properties": {
+        "name": "ping_ip",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 33,
+        "args": [
+          "ip_address",
+          "timeout"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.901055+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:audit_device_config",
+      "node_type": "Symbol",
+      "label": "Function audit_device_config",
+      "properties": {
+        "name": "audit_device_config",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 45,
+        "args": [
+          "cfg_path",
+          "is_router"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.903559+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:run_compliance_audit",
+      "node_type": "Symbol",
+      "label": "Function run_compliance_audit",
+      "properties": {
+        "name": "run_compliance_audit",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 93,
+        "args": [
+          "configs_dir",
+          "inventory"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.907261+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:run_reachability_tests",
+      "node_type": "Symbol",
+      "label": "Function run_reachability_tests",
+      "properties": {
+        "name": "run_reachability_tests",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 108,
+        "args": [
+          "inventory",
+          "simulate"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.910926+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:check_tftp_backups",
+      "node_type": "Symbol",
+      "label": "Function check_tftp_backups",
+      "properties": {
+        "name": "check_tftp_backups",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 142,
+        "args": [
+          "storage_dir",
+          "inventory"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.913883+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:display_audit_tables",
+      "node_type": "Symbol",
+      "label": "Function display_audit_tables",
+      "properties": {
+        "name": "display_audit_tables",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 157,
+        "args": [
+          "audits",
+          "reachability",
+          "backup_map"
+        ]
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.916658+00:00"
+    },
+    {
+      "id": "symbol:scripts/verify_network.py:main",
+      "node_type": "Symbol",
+      "label": "Function main",
+      "properties": {
+        "name": "main",
+        "type": "function",
+        "file": "scripts/verify_network.py",
+        "lineno": 232,
+        "args": []
+      },
+      "provenance_run_id": null,
+      "provenance_commit_sha": "a8d3fbc129ccaddea194d6119a62fbc4174f4df5",
+      "is_provisional": false,
+      "is_stale": false,
+      "created_at": "2026-10-07T08:45:46.919394+00:00"
+    }
+  ],
+  "edges": [
+    {
+      "source": "decision:testing:regression_gate",
+      "target": "file:packet_tracer/test_scenarios.md",
+      "relation": "GOVERNS"
+    },
+    {
+      "source": "decision:testing:regression_gate",
+      "target": "file:tests/test_automation.py",
+      "relation": "GOVERNS"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::setup_logger",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::load_inventory",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::simulate_tftp_backup",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::live_tftp_backup",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::print_backup_summary",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py::main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py::print_banner",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py::menu",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py::display_milestones",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::setup_logger",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::load_inventory",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::clean_config_for_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::simulate_ssh_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::live_ssh_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::deploy_all",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::print_deployment_summary",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py::main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::print_info",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::print_success",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::print_warning",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::print_error",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::validate_ip",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::load_csv",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::build_device_contexts",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::generate_configurations",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::display_results",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py::main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::ping_ip",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::audit_device_config",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::run_compliance_audit",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::run_reachability_tests",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::check_tftp_backups",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::display_audit_tables",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py::main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_ip_validation_helper",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_inventory_csv_schema",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_vlans_csv_schema",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_generate_configurations",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_router_configuration_syntax",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_switch_configuration_syntax",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:tests/test_automation.py",
+      "target": "symbol:tests/test_automation.py::test_all_devices_security_compliance",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:setup_logger",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:load_inventory",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:simulate_tftp_backup",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:live_tftp_backup",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:print_backup_summary",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/backup_tftp.py",
+      "target": "symbol:scripts/backup_tftp.py:main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py:print_banner",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py:menu",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/cli_runner.py",
+      "target": "symbol:scripts/cli_runner.py:display_milestones",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:setup_logger",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:load_inventory",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:clean_config_for_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:simulate_ssh_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:live_ssh_deployment",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:deploy_all",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:print_deployment_summary",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/deploy_configs.py",
+      "target": "symbol:scripts/deploy_configs.py:main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:print_info",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:print_success",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:print_warning",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:print_error",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:validate_ip",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:load_csv",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:build_device_contexts",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:generate_configurations",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:display_results",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/generate_configs.py",
+      "target": "symbol:scripts/generate_configs.py:main",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:ping_ip",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:audit_device_config",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:run_compliance_audit",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:run_reachability_tests",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:check_tftp_backups",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:display_audit_tables",
+      "relation": "DEFINES"
+    },
+    {
+      "source": "file:scripts/verify_network.py",
+      "target": "symbol:scripts/verify_network.py:main",
+      "relation": "DEFINES"
+    }
+  ]
+}
